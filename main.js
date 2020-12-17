@@ -1,32 +1,31 @@
-import utils from "./utils"
+import utils from './utils'
 
 utils.restoreControls()
 
-document.getElementById('convert').addEventListener('click',(evt) => {    
+document.getElementById('convert').addEventListener('click', (evt) => {
+  const input = document.getElementById('input').value
+  const fromCurrency = document.getElementById('from').value
+  const toCurrency = document.getElementById('to').value
+  const save = document.getElementById('save').checked
 
-    let input = document.getElementById('input').value,
-        fromCurrency = document.getElementById('from').options[document.getElementById('from').options.selectedIndex].text,
-        toCurrency = document.getElementById('to').options[document.getElementById('to').options.selectedIndex].text,
-        save = document.getElementById('save').checked
+  if (save) {
+    utils.saveControls(fromCurrency, toCurrency)
+  }
 
-    if(save) {
-        utils.saveControls(fromCurrency, toCurrency)
+  const error = utils.checkFields(input, fromCurrency, toCurrency)
+
+  if (error === false) {
+    document.getElementById('result-value').innerHTML = '<i>Loading</i>'
+    const url = utils.API_URL + utils.API_ENDPOINT_LATEST + '?' +
+                'access_key=' + utils.API_TOKEN +
+                '&base=' + fromCurrency +
+                '&symbols=' + toCurrency
+
+    const currencyApiRequest = new XMLHttpRequest()
+    currencyApiRequest.open('GET', url)
+    currencyApiRequest.onload = () => {
+      utils.callbackAPI(currencyApiRequest, input, toCurrency)
     }
-
-    let error = utils.checkFields(input, fromCurrency, toCurrency)
-
-    if(error === false) {
-        document.getElementById('result-value').innerHTML = '<i>Loading</i>'
-        const url = utils.constants.API_URL + utils.constants.API_ENDPOINT_LATEST + '?'
-                + 'access_key=' + utils.constants.API_TOKEN
-                + '&base=' + fromCurrency
-                + '&symbols=' + toCurrency
-
-        let currencyApiRequest = new XMLHttpRequest()
-        currencyApiRequest.open('GET', url)
-        currencyApiRequest.onload = () => {
-            utils.callbackAPI(currencyApiRequest, input, toCurrency)
-        }
-        currencyApiRequest.send()
-    }
+    currencyApiRequest.send()
+  }
 })
