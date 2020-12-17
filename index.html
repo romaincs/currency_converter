@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency converter</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Currency Converter</h1>
+    </header>
+    <hr>
+    <main>
+        <section>
+            <form action="#">
+                <div class="row">
+                    <input type="number" name="input" id="input" placeholder="Input">             
+                </div>
+                <div class="row">
+                    <select name="from" id="from" placeholder="From">
+                        <option value="">From</option>
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                    </select>                
+                </div>    
+                <div class="row">
+                    <select name="to" id="to">       
+                        <option value="">To</option>                 
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>              
+                </div>
+                <div class="row">
+                    <input type="button" value="Convert" id="convert">
+                </div>
+            </form>  
+        </section>
+        <hr>
+        <section class="results">
+            <div>
+                <div class="label">
+                    <label for="result">
+                        Result : 
+                    </label>
+                </div>
+                <div class="value">
+                    <span id="result-value"></span>
+                    <span id="result-currency"></span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="./main.js" type="module"></script>
+</body>
+</html>
