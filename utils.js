@@ -6,7 +6,7 @@ class constants {
 
 function checkFields(input, fromCurrency, toCurrency) {
     let error = true;
-    if(input === "") {
+    if(input === '') {
         alert('You must set an input value')
     }
     else if (fromCurrency === "From") {
@@ -36,4 +36,21 @@ function callbackAPI(currencyApiRequest, input, toCurrency) {
     }
 }
 
-export default { checkFields, callbackAPI, constants }
+function saveControls(fromCurrency, toCurrency) {
+    sessionStorage.setItem('fromCurrency', fromCurrency)
+    sessionStorage.setItem('toCurrency', toCurrency)
+}
+
+function restoreControls() {
+    let fromCurrency = sessionStorage.getItem('fromCurrency')
+    if(fromCurrency) {
+        document.getElementById('from').value = fromCurrency
+    }
+
+    let toCurrency = sessionStorage.getItem('toCurrency')
+    if(toCurrency) {
+        document.getElementById('to').value = toCurrency
+    }
+}
+
+export default { checkFields, callbackAPI, saveControls, restoreControls, constants }

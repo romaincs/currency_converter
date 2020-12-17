@@ -12,6 +12,22 @@ input, select {
     box-sizing: border-box;
 }
 
+.save-container {
+    width: 30%;
+    display: flex;
+}
+
+.save-container input {
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+}
+
+.save-container label {
+    padding: 2px 10px;
+    font-size:16px;
+}
+
 .row {
     display: flex;
     margin:10px 5px;
@@ -26,8 +42,7 @@ input, select {
 .results > div {
     width:30%;
     display: flex;
-    
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .results .label {
@@ -41,6 +56,15 @@ input, select {
 @media (max-width: 1024px) {
     input, select {
         width: 80%;
+    }
+
+    .save-container {
+        width: 80%;
+    }
+
+    .save-container input {
+        width: 20px;
+        height: 20px;
     }
 
     .results > div {
